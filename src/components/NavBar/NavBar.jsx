@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import { AuthedUserContext } from '../App';
-import { useContext } from 'react';
+import { Link } from "react-router-dom";
+import { AuthedUserContext } from "../App";
+import { useContext } from "react";
 
 const NavBar = ({ handleSignout }) => {
   const user = useContext(AuthedUserContext);
@@ -11,8 +11,15 @@ const NavBar = ({ handleSignout }) => {
           <ul>
             <li>Welcome, {user.username}</li>
             <li>
-              <Link to="/">Dashboard</Link>
+              <Link to="/listings">All Listings</Link>
             </li>
+            <li>
+              <Link to="/my-listings">My Listings</Link>
+            </li>
+            <li>
+              <Link to="/listings/new">New Listing</Link>
+            </li>
+
             <li>
               <Link to="" onClick={handleSignout}>
                 Sign Out

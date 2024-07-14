@@ -22,6 +22,7 @@ const App = () => {
   useEffect(() => {
     const fetchAllListings = async () => {
       const allListings = await listingService.index();
+      console.log(allListings);
       setListings(allListings);
     };
     if (user) fetchAllListings();
@@ -32,12 +33,34 @@ const App = () => {
     setUser(null);
   };
 
+  const handleAddListing = async (listingFormData) => {
+    const newListing = await listingService.create(listingFormData);
+    setListings([newListing, ...listings]);
+    navigate("/listing");
+  };
+
+  const handleUpdateListing = async (listingFormData) => {
+    const updatedListing = await listingService.update(
+      listingFormData._id,
+      listingFormData
+    );
+    const updatedListingIndex = listings.findIndex(
+      (listing) => listing._id === listingFormData._id
+    );
+
+    const updatedListings = [...listings];
+    updatedListings[updatedListingIndex] = updatedListing;
+    setListings(updatedListings);
+
+    navigate("/listings/" + updatedListing._id);
+  };
+
   const handleDeleteListing = async (listingId) => {
     await listingService.deleteListing(listingId);
     const remainingListings = listings.filter(
       (listing) => listing._id !== listingId
     );
-    setHoots(remainingListings);
+    setListings(remainingListings);
     navigate("/listings");
   };
 
@@ -61,11 +84,11 @@ const App = () => {
               />
               <Route
                 path="/listings/new"
-                element={<ListingForm /*handleSubmit={handleAddListing}*/ />}
+                element={<ListingForm handleSubmit={handleAddListing} />}
               />
               <Route
                 path="/listings/:id/edit"
-                element={<ListingForm /*handleSubmit={handleUpdateListing}*/ />}
+                element={<ListingForm handleSubmit={handleUpdateListing} />}
               />
             </>
           ) : (
