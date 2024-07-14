@@ -39,13 +39,15 @@ const ListingDetails = (props) => {
   return (
     <main>
       <header>
-        <p style={{ textTransform: "uppercase" }}>{listing.category}</p>
+        <p className="lead" style={{ textTransform: "uppercase" }}>
+          {listing.category}
+        </p>
       </header>
 
       <section>
         <img src="https://placehold.co/400x300.png" />
-        <h2>{listing.title}</h2>
-        <h4>${listing.price}</h4>
+        <h2 className="display-4">{listing.title}</h2>
+        <h4 className="h4">${listing.price}</h4>
         <p>
           {listing.seller.username} posted on{" "}
           {new Date(listing.createdAt).toLocaleDateString()}
@@ -56,8 +58,16 @@ const ListingDetails = (props) => {
         <h2>Bids</h2>
         {listing.seller._id === user._id && (
           <>
-            <Link to={`/listings/${listing._id}/edit`}>Edit</Link>
-            <button onClick={() => props.handleDeleteListing(listing._id)}>
+            <Link
+              className="btn btn-primary btn-m px-5 py-3 mt-2"
+              to={`/listings/${listing._id}/edit`}
+            >
+              Edit
+            </Link>
+            <button
+              className="btn btn-primary btn-m mx-3 px-5 py-3 mt-2"
+              onClick={() => props.handleDeleteListing(listing._id)}
+            >
               Delete
             </button>
           </>
