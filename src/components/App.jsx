@@ -12,23 +12,31 @@ import * as listingService from "../services/listingService";
 import ListingDetails from "./ListingDetails/ListingDetails";
 import ListingList from "./ListingList/ListingList";
 import ListingForm from "./ListingForm/ListingForm";
+import ListingFilter from "./ListingFilter/ListingFilter";
 
 export const AuthedUserContext = createContext(null);
+
+const initialFilterData = {
+  title: "",
+  category: "",
+  condition: "",
+};
 
 const App = () => {
   const [user, setUser] = useState(authService.getUser()); // using the method from authservice
   const [listings, setListings] = useState([]); // all users' listings
+  const [filterData, setFilterData] = useState(initialFilterData);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchAllListings = async () => {
-      const allListings = await listingService.index();
-      console.log(allListings);
-      setListings(allListings);
-    };
     if (user) fetchAllListings();
-  }, [user]);
+  }, [user, filterData]);
+
+  const fetchAllListings = async () => {
+    const allListings = await listingService.index();
+    setListings(filterListings(allListings));
+  };
 
   const handleSignout = () => {
     authService.signout();
@@ -66,6 +74,29 @@ const App = () => {
     navigate("/listings");
   };
 
+  const filterListings = (allListings) => {
+    if (filterData) {
+      return allListings.filter((listing) => {
+        if (filterData.title && !listing.title.includes(filterData.title)) {
+          return false;
+        }
+
+        if (filterData.category && listing.category !== filterData.category) {
+          return false;
+        }
+
+        if (
+          filterData.condition &&
+          listing.condition !== filterData.condition
+        ) {
+          return false;
+        }
+
+        return true;
+      });
+    }
+  };
+
   return (
     <>
       <AuthedUserContext.Provider value={user}>
@@ -77,7 +108,15 @@ const App = () => {
                 <Route path="/" element={<Dashboard user={user} />} />
                 <Route
                   path="/listings"
-                  element={<ListingList listings={listings} />}
+                  element={
+                    <div className="d-flex">
+                      <ListingFilter
+                        filterListing={setFilterData}
+                        resetFilter={() => setFilterData(initialFilterData)}
+                      />
+                      <ListingList listings={listings} />
+                    </div>
+                  }
                 />
                 <Route
                   path="/my-listings"
