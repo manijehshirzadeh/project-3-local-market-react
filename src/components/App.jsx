@@ -21,7 +21,6 @@ const App = () => {
 
   const navigate = useNavigate();
 
-
   useEffect(() => {
     const fetchAllListings = async () => {
       const allListings = await listingService.index();
@@ -38,7 +37,7 @@ const App = () => {
 
   const handleAddListing = async (listingFormData) => {
     const newListing = await listingService.create(listingFormData);
-    setListings([newListing, ...listings]);
+    setListings([...listings, newListing]);
     navigate("/listings");
   };
 
@@ -79,6 +78,16 @@ const App = () => {
                 <Route
                   path="/listings"
                   element={<ListingList listings={listings} />}
+                />
+                <Route
+                  path="/my-listings"
+                  element={
+                    <ListingList
+                      listings={listings.filter(
+                        (listing) => listing.seller._id === user._id
+                      )}
+                    />
+                  }
                 />
                 <Route
                   path="/listings/:id"

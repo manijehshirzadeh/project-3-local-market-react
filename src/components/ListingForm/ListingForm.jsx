@@ -7,7 +7,7 @@ const ListingForm = (props) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    category: "",
+    category: "Tools",
     price: "",
     postcode: "",
     condition: "New",
@@ -35,7 +35,7 @@ const ListingForm = (props) => {
 
   return (
     <main className="h-100 d-flex justify-content-center">
-      <form onSubmit={handleSubmit} style={{ width: "50%"}}>
+      <form onSubmit={handleSubmit} style={{ width: "50%" }}>
         <h1>{id ? "Edit listing" : "New listing"}</h1>
         <div className="mb-3">
           <label htmlFor="title-input" className="form-label">
