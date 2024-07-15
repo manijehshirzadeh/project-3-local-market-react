@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { AuthedUserContext } from "../App";
 import { useContext } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 
 const NavBar = ({ handleSignout }) => {
   const user = useContext(AuthedUserContext);
+  const location = useLocation();
+
   return (
     <>
       {user ? (
@@ -34,25 +36,40 @@ const NavBar = ({ handleSignout }) => {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <a
-                    className="nav-link active"
-                    aria-current="page"
+                    className={
+                      "nav-link " +
+                      (location.pathname === "/listings" && "active")
+                    }
+                    // aria-current="page"
                     href="/listings"
                   >
                     All Listings
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/my-listings">
+                  <a
+                    className={
+                      "nav-link " +
+                      (location.pathname === "/my-listings" && "active")
+                    }
+                    href="/my-listings"
+                  >
                     My Listings
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/listings/new">
+                  <a
+                    className={
+                      "nav-link " +
+                      (location.pathname === "/listings/new" && "active")
+                    }
+                    href="/listings/new"
+                  >
                     New Listing
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#" onClick={handleSignout}>
+                  <a className="nav-link" href="/" onClick={handleSignout}>
                     Sign out
                   </a>
                 </li>
@@ -98,7 +115,10 @@ const NavBar = ({ handleSignout }) => {
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
                   <a
-                    className="nav-link active"
+                    className={
+                      "nav-link " +
+                      (location.pathname === "/signin" && "active")
+                    }
                     aria-current="page"
                     href="/signin"
                   >
@@ -106,7 +126,13 @@ const NavBar = ({ handleSignout }) => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="/signup">
+                  <a
+                    className={
+                      "nav-link " +
+                      (location.pathname === "/signup" && "active")
+                    }
+                    href="/signup"
+                  >
                     Sign Up
                   </a>
                 </li>

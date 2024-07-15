@@ -68,35 +68,37 @@ const App = () => {
     <>
       <AuthedUserContext.Provider value={user}>
         <NavBar user={user} handleSignout={handleSignout} />
-        <Routes>
-          {user ? (
-            <>
-              <Route path="/" element={<Dashboard user={user} />} />
-              <Route
-                path="/listings"
-                element={<ListingList listings={listings} />}
-              />
-              <Route
-                path="/listings/:id"
-                element={
-                  <ListingDetails handleDeleteListing={handleDeleteListing} />
-                }
-              />
-              <Route
-                path="/listings/new"
-                element={<ListingForm handleSubmit={handleAddListing} />}
-              />
-              <Route
-                path="/listings/:id/edit"
-                element={<ListingForm handleSubmit={handleUpdateListing} />}
-              />
-            </>
-          ) : (
-            <Route path="/" element={<Landing />} />
-          )}
-          <Route path="/signup" element={<SignupForm setUser={setUser} />} />
-          <Route path="/signin" element={<SigninForm setUser={setUser} />} />
-        </Routes>
+        <div className="p-4">
+          <Routes>
+            {user ? (
+              <>
+                <Route path="/" element={<Dashboard user={user} />} />
+                <Route
+                  path="/listings"
+                  element={<ListingList listings={listings} />}
+                />
+                <Route
+                  path="/listings/:id"
+                  element={
+                    <ListingDetails handleDeleteListing={handleDeleteListing} />
+                  }
+                />
+                <Route
+                  path="/listings/new"
+                  element={<ListingForm handleSubmit={handleAddListing} />}
+                />
+                <Route
+                  path="/listings/:id/edit"
+                  element={<ListingForm handleSubmit={handleUpdateListing} />}
+                />
+              </>
+            ) : (
+              <Route path="/" element={<Landing />} />
+            )}
+            <Route path="/signup" element={<SignupForm setUser={setUser} />} />
+            <Route path="/signin" element={<SigninForm setUser={setUser} />} />
+          </Routes>
+        </div>
       </AuthedUserContext.Provider>
     </>
   );

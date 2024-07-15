@@ -34,80 +34,110 @@ const ListingForm = (props) => {
   };
 
   return (
-    <main>
-      <form onSubmit={handleSubmit}>
+    <main className="h-100 d-flex justify-content-center">
+      <form onSubmit={handleSubmit} style={{ width: "50%"}}>
         <h1>{id ? "Edit listing" : "New listing"}</h1>
-        <label htmlFor="title-input">Title</label>
-        <input
-          required
-          type="text"
-          name="title"
-          id="title-input"
-          value={formData.title}
-          onChange={handleChange}
-        />
-        <label htmlFor="text-input">Description</label>
-        <textarea
-          required
-          type="text"
-          name="description"
-          id="text-input"
-          value={formData.description}
-          onChange={handleChange}
-        />
-        <label htmlFor="category-input">Category</label>
-        <select
-          required
-          name="category"
-          id="category-input"
-          value={formData.category}
-          onChange={handleChange}
-        >
-          <option value="Tools">Tools</option>
-          <option value="Tools">Tools</option>
-          <option value="Garden">Garden</option>
-          <option value="Cloth">Cloth</option>
-          <option value="Books">Books</option>
-          <option value="Appliances">Appliances</option>
-          <option value="Toys">Toys</option>
-          <option value="Electronics">Electronics</option>
-        </select>
-
-        <label htmlFor="price-input">Price</label>
-        <input
-          required
-          type="number"
-          name="price"
-          id="price-input"
-          value={formData.price}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="postcode-input">Postcode</label>
-        <input
-          required
-          type="number"
-          name="postcode"
-          id="postcode-input"
-          value={formData.postcode}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="condition-input">Category</label>
-        <select
-          required
-          name="condition"
-          id="condition-input"
-          value={formData.condition}
-          onChange={handleChange}
-        >
-          <option value="New">New</option>
-          <option value="Used - like new">Used - like new</option>
-          <option value="Used - good">Used - good</option>
-          <option value="Used - fair">Used - fair</option>
-        </select>
-
-        <button type="submit">SUBMIT</button>
+        <div className="mb-3">
+          <label htmlFor="title-input" className="form-label">
+            Title
+          </label>
+          <input
+            required
+            type="text"
+            className="form-control"
+            id="title-input"
+            name="title"
+            placeholder="What do you want to sell?"
+            value={formData.title}
+            onChange={handleChange}
+          ></input>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="description-input" className="form-label">
+            Description
+          </label>
+          <textarea
+            className="form-control"
+            name="description"
+            id="description-input"
+            value={formData.description}
+            onChange={handleChange}
+            placeholder="Short description about the listing"
+            rows="3"
+          ></textarea>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="category-input" className="form-label">
+            Category
+          </label>
+          <select
+            required
+            className="form-control form-select"
+            name="category"
+            id="category-input"
+            value={formData.category}
+            onChange={handleChange}
+          >
+            <option value="Tools">Tools</option>
+            <option value="Garden">Garden</option>
+            <option value="Cloth">Cloth</option>
+            <option value="Books">Books</option>
+            <option value="Appliances">Appliances</option>
+            <option value="Toys">Toys</option>
+            <option value="Electronics">Electronics</option>
+          </select>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="price-input" className="form-label">
+            Price
+          </label>
+          <input
+            required
+            className="form-control"
+            type="number"
+            name="price"
+            id="price-input"
+            value={formData.price}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="postcode-input" className="form-label">
+            Postcode
+          </label>
+          <input
+            required
+            type="number"
+            name="postcode"
+            id="postcode-input"
+            value={formData.postcode}
+            onChange={handleChange}
+            className="form-control"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="condition-input" className="form-label">
+            Category
+          </label>
+          <select
+            required
+            className="form-control form-select"
+            name="condition"
+            id="condition-input"
+            value={formData.condition}
+            onChange={handleChange}
+          >
+            <option value="New">New</option>
+            <option value="Used - like new">Used - like new</option>
+            <option value="Used - good">Used - good</option>
+            <option value="Used - fair">Used - fair</option>
+          </select>
+        </div>
+        <div className="mb-3">
+          <button type="submit" className="btn btn-primary mb-3">
+            SUBMIT
+          </button>
+        </div>
       </form>
     </main>
   );
