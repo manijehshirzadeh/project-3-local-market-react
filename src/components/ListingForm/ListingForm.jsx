@@ -10,7 +10,7 @@ const ListingForm = (props) => {
     category: "",
     price: "",
     postcode: "",
-    condition: "",
+    condition: "New",
   });
 
   const { id } = useParams();
