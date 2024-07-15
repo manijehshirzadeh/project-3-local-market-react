@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState, createContext, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar/NavBar";
 import Landing from "./Landing/Landing";
 import Dashboard from "./Dashboard/Dashboard";
@@ -19,6 +19,9 @@ const App = () => {
   const [user, setUser] = useState(authService.getUser()); // using the method from authservice
   const [listings, setListings] = useState([]); // all users' listings
 
+  const navigate = useNavigate();
+
+
   useEffect(() => {
     const fetchAllListings = async () => {
       const allListings = await listingService.index();
@@ -36,7 +39,7 @@ const App = () => {
   const handleAddListing = async (listingFormData) => {
     const newListing = await listingService.create(listingFormData);
     setListings([newListing, ...listings]);
-    navigate("/listing");
+    navigate("/listings");
   };
 
   const handleUpdateListing = async (listingFormData) => {

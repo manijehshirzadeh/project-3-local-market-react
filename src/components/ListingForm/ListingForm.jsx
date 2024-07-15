@@ -117,7 +117,7 @@ const ListingForm = (props) => {
         </div>
         <div className="mb-3">
           <label htmlFor="condition-input" className="form-label">
-            Category
+            Condition
           </label>
           <select
             required
