@@ -5,8 +5,8 @@ const ListingList = (props) => {
   const listingListItems = props.listings.map((listing) => (
     <Link
       key={listing._id}
-      className="card"
-      style={{ width: "18rem" }}
+      className="card position-relative"
+      style={{ width: "18rem", minHeight: "400px" }}
       to={"/listings/" + listing._id}
     >
       <img
@@ -17,10 +17,13 @@ const ListingList = (props) => {
       <div className="card-body">
         <h5 className="card-title">{listing.title}</h5>
         <h6 className="card-title">${listing.price}</h6>
-        <p className="card-text">{listing.description}</p>
-        {/* <a href="#" className="btn btn-primary">
-          Make a bid
-        </a> */}
+        <p className="card-text pb-4">{listing.description}</p>
+        <p className="position-absolute bottom-0">
+          {listing.bids.length !== 0
+            ? "Highest bid is $" +
+              Math.max(...listing.bids.map((bid) => bid.price))
+            : "No bids yet"}
+        </p>
       </div>
     </Link>
   ));
