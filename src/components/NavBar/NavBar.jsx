@@ -11,7 +11,8 @@ const NavBar = ({ handleSignout }) => {
     <>
       {user ? (
         <nav
-          className="navbar bg-primary navbar-expand-sm"
+          className="navbar navbar-expand-sm"
+          style={{backgroundColor: "#0866FF"}}
           data-bs-theme="dark"
         >
           <div className="container-fluid">

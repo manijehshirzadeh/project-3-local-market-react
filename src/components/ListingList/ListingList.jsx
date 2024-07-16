@@ -20,7 +20,7 @@ const ListingList = (props) => {
         <p className="card-text pb-4">{listing.description}</p>
         <p className="position-absolute bottom-0">
           {listing.bids.length !== 0
-            ? "Highest bid is $" +
+            ? "Highest bid is AU$" +
               Math.max(...listing.bids.map((bid) => bid.price))
             : "No bids yet"}
         </p>

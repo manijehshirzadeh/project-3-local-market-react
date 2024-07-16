@@ -92,10 +92,10 @@ const ListingDetails = (props) => {
 
         <img src="https://placehold.co/400x300.png" />
         <h2 className="display-4">{listing.title}</h2>
-        <h4 className="h4">${listing.price}</h4>
-        <p>
-          {listing.seller.username} posted on{" "}
-          {new Date(listing.createdAt).toLocaleDateString()}
+        <h4 className="h4">AU${listing.price}</h4>
+        <p style={{ color: "#aaaaaa" }}>
+          Listed on {new Date(listing.createdAt).toLocaleDateString()} by{" "}
+          {listing.seller.username}
         </p>
         <p>{listing.description}</p>
         <p>Condition: {listing.condition}</p>
@@ -107,7 +107,7 @@ const ListingDetails = (props) => {
           <article key={bid._id}>
             <header>
               <p>
-                ${bid.price} bid made by {bid.bidder.username} on{" "}
+                AU${bid.price} bid made by {bid.bidder.username} on{" "}
                 {new Date(bid.createdAt).toLocaleDateString()}
               </p>
             </header>
