@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import * as authService from '../../services/authService';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import * as authService from "../../services/authService";
 
 const SignupForm = (props) => {
   const navigate = useNavigate();
-  const [message, setMessage] = useState(['']);
+  const [message, setMessage] = useState([""]);
   const [formData, setFormData] = useState({
-    username: '',
-    password: '',
-    passwordConf: '',
+    username: "",
+    password: "",
+    passwordConf: "",
   });
 
   const updateMessage = (msg) => {
@@ -24,7 +24,7 @@ const SignupForm = (props) => {
     try {
       const newUserResponse = await authService.signup(formData);
       props.setUser(newUserResponse.user);
-      navigate('/');
+      navigate("/");
     } catch (err) {
       updateMessage(err.message);
     }
@@ -40,42 +40,63 @@ const SignupForm = (props) => {
     <main>
       <h1>Sign Up</h1>
       <p>{message}</p>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">Username:</label>
+      <form
+        onSubmit={handleSubmit}
+        className="d-flex flex-column align-items-center"
+      >
+        <div className="mb-3">
+          <label className="form-label" htmlFor="username-input">
+            Username:
+          </label>
           <input
             type="text"
-            id="name"
+            id="username-input"
             value={username}
             name="username"
+            className="form-control"
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="password-input">
+            Password:
+          </label>
           <input
             type="password"
-            id="password"
+            id="password-input"
+            className="form-control"
             value={password}
             name="password"
             onChange={handleChange}
           />
         </div>
-        <div>
-          <label htmlFor="confirm">Confirm Password:</label>
+        <div className="mb-3">
+          <label className="form-label" htmlFor="confirm-input">
+            Confirm Password:
+          </label>
           <input
             type="password"
-            id="confirm"
+            id="confirm-input"
             value={passwordConf}
+            className="form-control"
             name="passwordConf"
             onChange={handleChange}
           />
         </div>
-        <div>
-          <button disabled={isFormInvalid()}>Sign Up</button>
-          <Link to="/">
-            <button>Cancel</button>
-          </Link>
+        <div className="d-flex gap-5">
+          <div>
+            <button
+              className="btn px-3 py-2 btn-primary"
+              disabled={isFormInvalid()}
+            >
+              Sign Up
+            </button>
+          </div>
+          <div>
+            <Link to="/">
+              <button className="btn px-3 py-2 btn-primary">Cancel</button>
+            </Link>
+          </div>
         </div>
       </form>
     </main>
