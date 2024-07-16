@@ -120,6 +120,12 @@ const deleteListing = async (id) => {
 
 const createBid = async (listingId, bid) => {
   try {
+    return {
+      _id: "7635476",
+      price: bid.price,
+      createdAt: "12-07-2024",
+      bidder: { _id: "1324eafr34", username: "a" },
+    };
     const response = await fetch(`${BASE_URL}/${listingId}/bids`, {
       method: "POST",
       headers: {
