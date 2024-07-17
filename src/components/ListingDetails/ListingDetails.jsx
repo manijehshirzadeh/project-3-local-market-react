@@ -95,7 +95,11 @@ const ListingDetails = (props) => {
             </div>
           </div>
 
-          <img src={listing.image || "https://placehold.co/400x300.png"} />
+          <img
+            style={{ border: "1px solid #dfdedb", borderRadius: "0.5em" }}
+            className="w-100"
+            src={listing.image || "https://placehold.co/400x300.png"}
+          />
           <h2 className="display-6 py-2">{listing.title}</h2>
           <h4 className="h4">AU${listing.price}</h4>
           <p style={{ color: "#aaaaaa" }}>
@@ -104,63 +108,70 @@ const ListingDetails = (props) => {
           </p>
 
           <div
-            className="d-flex gap-5 mt-5"
+            className="d-flex gap-5 justify-content-between mt-5"
             style={{ minWidth: "800px", maxWidth: "50%" }}
           >
             <div>
               <p>Description:</p>
               <p>{listing.description}</p>
               <p>Condition: {listing.condition}</p>
-              <h2>Bids</h2>
-
-              {listing.bids.length === 0 && <p>No bids yet.</p>}
-
-              {listing.bids.map((bid) => (
-                <article key={bid._id}>
-                  <header>
-                    <p>
-                      AU${bid.price} bid made by {bid.bidder.username} on{" "}
-                      {new Date(bid.createdAt).toLocaleDateString()}
-                    </p>
-                  </header>
-                </article>
-              ))}
-
-              {listing.seller._id === user._id && (
-                <>
-                  <button
-                    className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
-                    onClick={() => props.handleEditListing(listing._id)}
-                  >
-                    Edit
-                  </button>
-
-                  <button
-                    className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
-                    onClick={() => props.handleDeleteListing(listing._id)}
-                  >
-                    Delete
-                  </button>
-                </>
-              )}
-
-              {listing.seller._id !== user._id && (
-                <>
-                  <button
-                    className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
-                    onClick={() => setShowBidForm(true)}
-                    type="button"
-                  >
-                    Make a bid
-                  </button>
-                </>
-              )}
             </div>
 
             <div>
               <p>Pick up postcode: {listing.postcode}</p>
               <MapComponent postcode={listing.postcode} />
             </div>
+          </div>
+
+          {/* BIDS */}
+          <div className="mt-5">
+            <h2>Bids</h2>
+
+            {listing.bids.length === 0 && <p>No bids yet.</p>}
+
+            {listing.bids.map((bid) => (
+              <article key={bid._id}>
+                <header>
+                  <p>
+                    AU${bid.price} bid made by {bid.bidder.username} on{" "}
+                    {new Date(bid.createdAt).toLocaleDateString()}
+                  </p>
+                </header>
+              </article>
+            ))}
+
+            {listing.seller._id !== user._id && (
+              <>
+                <button
+                  className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
+                  onClick={() => setShowBidForm(true)}
+                  type="button"
+                >
+                  Make a bid
+                </button>
+              </>
+            )}
+          </div>
+
+          {/* Action buttons */}
+          <div className="mt-5">
+            {listing.seller._id === user._id && (
+              <>
+                <button
+                  className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
+                  onClick={() => props.handleEditListing(listing._id)}
+                >
+                  Edit
+                </button>
+
+                <button
+                  className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
+                  onClick={() => props.handleDeleteListing(listing._id)}
+                >
+                  Delete
+                </button>
+              </>
+            )}
           </div>
         </div>
       </section>

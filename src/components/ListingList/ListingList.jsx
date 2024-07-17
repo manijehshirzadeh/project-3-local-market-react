@@ -18,12 +18,23 @@ const ListingList = (props) => {
         <h5 className="card-title">{listing.title}</h5>
         <h6 className="card-title">${listing.price}</h6>
         <p className="card-text pb-4">{listing.description}</p>
-        <p className="position-absolute bottom-0">
-          {listing.bids.length !== 0
-            ? "Highest bid is AU$" +
-              Math.max(...listing.bids.map((bid) => bid.price))
-            : "No bids yet"}
-        </p>
+        <div className="position-absolute bottom-0">
+          {listing.bids.length !== 0 ? (
+            <p
+              style={{
+                backgroundImage: "url('flame-icon.svg')",
+                backgroundPosition: "center left",
+                backgroundRepeat: "no-repeat",
+                paddingLeft: "25px",
+              }}
+            >
+              {"Highest bid is AU$" +
+                Math.max(...listing.bids.map((bid) => bid.price))}
+            </p>
+          ) : (
+            <p>No bids yet</p>
+          )}
+        </div>
       </div>
     </Link>
   ));

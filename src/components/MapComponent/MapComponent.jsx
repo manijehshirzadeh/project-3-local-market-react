@@ -48,7 +48,15 @@ const MapComponent = ({ postcode }) => {
   }, [postcode]);
 
   return (
-    <div ref={mapContainerRef} style={{ width: "400px", height: "300px" }} />
+    <div
+      ref={mapContainerRef}
+      style={{
+        width: "400px",
+        height: "300px",
+        border: "1px solid #dfdedb",
+        borderRadius: "0.5em",
+      }}
+    />
   );
 };
 
