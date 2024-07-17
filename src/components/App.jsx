@@ -50,6 +50,7 @@ const App = () => {
   };
 
   const handleUpdateListing = async (listingFormData) => {
+    console.log("listingFormData" + JSON.stringify(listingFormData));
     const updatedListing = await listingService.update(
       listingFormData._id,
       listingFormData
@@ -63,6 +64,27 @@ const App = () => {
     setListings(updatedListings);
 
     navigate("/listings/" + updatedListing._id);
+  };
+
+  const handleEditListing = async (listingId) => {
+    navigate("/listings/" + listingId + "/edit");
+
+    // to={`/listings/${listing._id}/edit`}
+    // navigate("/listings/" + updatedListing._id);
+
+    // const updatedListing = await listingService.update(
+    //   listingFormData._id,
+    //   listingFormData
+    // );
+    // const updatedListingIndex = listings.findIndex(
+    //   (listing) => listing._id === listingFormData._id
+    // );
+
+    // const updatedListings = [...listings];
+    // updatedListings[updatedListingIndex] = updatedListing;
+    // setListings(updatedListings);
+
+    // navigate("/listings/" + updatedListing._id);
   };
 
   const handleDeleteListing = async (listingId) => {
@@ -145,6 +167,7 @@ const App = () => {
                     element={
                       <ListingDetails
                         handleDeleteListing={handleDeleteListing}
+                        handleEditListing={handleEditListing}
                       />
                     }
                   />

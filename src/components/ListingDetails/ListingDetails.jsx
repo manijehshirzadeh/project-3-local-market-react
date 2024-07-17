@@ -128,12 +128,13 @@ const ListingDetails = (props) => {
 
               {listing.seller._id === user._id && (
                 <>
-                  <Link
-                    className="btn btn-primary btn-m px-5 py-2 mt-2"
-                    to={`/listings/${listing._id}/edit`}
+                  <button
+                    className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
+                    onClick={() => props.handleEditListing(listing._id)}
                   >
                     Edit
-                  </Link>
+                  </button>
+
                   <button
                     className="btn btn-primary btn-m mx-3 px-5 py-2 mt-2"
                     onClick={() => props.handleDeleteListing(listing._id)}

@@ -51,13 +51,15 @@ const ListingForm = (props) => {
     try {
       if (image) {
         const data = await uploadImage(image);
+        console.log("data.url", data.url);
         setFormData({ ...formData, image: data.url });
         formData.image = data.url;
-        formData._id = id;
-        props.handleSubmit(formData); // might be add! might be update!
-      } else {
-        setImage("");
       }
+      // else {
+      //   setImage("");
+      // }
+      formData._id = id;
+      props.handleSubmit(formData); // might be add! might be update!
       setImage("");
     } catch (error) {
       console.log(error);
@@ -176,7 +178,7 @@ const ListingForm = (props) => {
 
         <div className="mb-3">
           <button type="submit" className="btn btn-primary mb-3">
-            SUBMIT
+            Submit
           </button>
         </div>
       </form>
