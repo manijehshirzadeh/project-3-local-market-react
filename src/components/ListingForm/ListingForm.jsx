@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import * as listingService from "../../services/listingService";
 
 const ListingForm = (props) => {
+  const [image, setImage] = useState("");
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -11,7 +12,21 @@ const ListingForm = (props) => {
     price: "",
     postcode: "",
     condition: "New",
+    image: "",
   });
+
+  const uploadImage = async (image) => {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "react-cloudinary");
+    data.append("cloud_name", "djaedfrag");
+    return fetch("https://api.cloudinary.com/v1_1/djaedfrag/image/upload", {
+      method: "post",
+      body: data,
+    })
+      .then((res) => res.json())
+      .catch((err) => console.log(err));
+  };
 
   const { id } = useParams();
 
@@ -27,10 +42,26 @@ const ListingForm = (props) => {
     setFormData({ ...formData, [event.target.name]: event.target.value });
   };
 
-  const handleSubmit = (event) => {
+  const handleImageChange = (event) => {
+    setImage(event.target.files[0]);
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    formData._id = id;
-    props.handleSubmit(formData); // might be add! might be update!
+    try {
+      if (image) {
+        const data = await uploadImage(image);
+        setFormData({ ...formData, image: data.url });
+        formData.image = data.url;
+        formData._id = id;
+        props.handleSubmit(formData); // might be add! might be update!
+      } else {
+        setImage("");
+      }
+      setImage("");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -133,6 +164,16 @@ const ListingForm = (props) => {
             <option value="Used - fair">Used - fair</option>
           </select>
         </div>
+        <div className="mb-3">
+          <label className="form-label">Image</label>
+          <input
+            onChange={handleImageChange}
+            type="file"
+            name="image"
+            className="form-control"
+          />
+        </div>
+
         <div className="mb-3">
           <button type="submit" className="btn btn-primary mb-3">
             SUBMIT

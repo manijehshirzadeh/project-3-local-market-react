@@ -95,7 +95,7 @@ const ListingDetails = (props) => {
             </div>
           </div>
 
-          <img src="https://placehold.co/400x300.png" />
+          <img src={listing.image || "https://placehold.co/400x300.png"} />
           <h2 className="display-6 py-2">{listing.title}</h2>
           <h4 className="h4">AU${listing.price}</h4>
           <p style={{ color: "#aaaaaa" }}>

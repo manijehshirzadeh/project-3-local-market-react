@@ -10,7 +10,7 @@ const ListingList = (props) => {
       to={"/listings/" + listing._id}
     >
       <img
-        src="https://placehold.co/400x300.png"
+        src={listing.image || "https://placehold.co/400x300.png"}
         className="card-img-top"
         alt="..."
       ></img>
