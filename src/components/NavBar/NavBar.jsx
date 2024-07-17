@@ -67,10 +67,8 @@ const NavBar = ({ handleSignout }) => {
                 </li>
               </ul>
               <ul className="navbar-nav me-2 mb-2 mb-lg-0">
-                <li className="nav-item">
-                  <a className="nav-link" href="/" onClick={handleSignout}>
-                    Parisa
-                  </a>
+                <li className="nav-item me-3">
+                  <div className="nav-link">Parisa</div>
                 </li>
 
                 <li className="nav-item">

@@ -28,7 +28,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI Historic", "Segoe UI", Helvetica, Arial,
+    sans-serif;
   background-color: #fef9f3 !important;
 }
 
