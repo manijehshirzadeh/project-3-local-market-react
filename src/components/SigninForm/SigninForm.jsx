@@ -32,15 +32,15 @@ const SigninForm = (props) => {
   };
 
   return (
-    <main>
-      <h1>Log In</h1>
+    <main className="min-width-400 d-flex flex-column justify-content-center align-items-center height-70vh">
+      <h1 className="mb-5">Sign In</h1>
       <p>{message}</p>
       <form
         autoComplete="off"
         onSubmit={handleSubmit}
-        className="d-flex flex-column align-items-center"
+        className="d-flex flex-column align-items-center w-100"
       >
-        <div className="mb-3">
+        <div className="mb-3 w-100">
           <label htmlFor="username-input" className="form-label">
             Username:
           </label>
@@ -51,10 +51,11 @@ const SigninForm = (props) => {
             className="form-control"
             value={formData.username}
             name="username"
+            required
             onChange={handleChange}
           />
         </div>
-        <div className="mb-3">
+        <div className="mb-3 w-100">
           <label htmlFor="password-input" className="form-label">
             Password:
           </label>
@@ -65,16 +66,17 @@ const SigninForm = (props) => {
             className="form-control"
             value={formData.password}
             name="password"
+            required
             onChange={handleChange}
           />
         </div>
-        <div className="d-flex gap-5">
+        <div className="d-flex gap-5 mt-3">
           <div>
-            <button className="btn px-3 py-2 btn-primary">Log In</button>
+            <button className="btn px-4 py-2 btn-primary">Log In</button>
           </div>
           <div>
             <Link to="/">
-              <button className="btn px-3 py-2 btn-primary">Cancel</button>
+              <button className="btn px-4 py-2 btn-primary">Cancel</button>
             </Link>
           </div>
         </div>

@@ -1,6 +1,6 @@
 const Landing = () => {
   return (
-    <main>
+    <main className="landing-main">
       <h1>Welcome to Local Market</h1>
       <h3 className="mt-5">
         Welcome to Local Market, your one-stop destination for buying and

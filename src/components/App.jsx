@@ -101,54 +101,75 @@ const App = () => {
     <>
       <AuthedUserContext.Provider value={user}>
         <NavBar user={user} handleSignout={handleSignout} />
-        <div className="p-4">
-          <Routes>
-            {user ? (
-              <>
-                <Route path="/" element={<Dashboard user={user} />} />
-                <Route
-                  path="/listings"
-                  element={
-                    <div className="d-flex">
-                      <ListingFilter
-                        filterListing={setFilterData}
-                        resetFilter={() => setFilterData(initialFilterData)}
+        <div className="p-4 d-flex justify-content-center">
+          <div className="max-width">
+            <Routes>
+              {user ? (
+                <>
+                  <Route
+                    path="/"
+                    element={
+                      <div className="d-flex">
+                        <ListingFilter
+                          filterListing={setFilterData}
+                          resetFilter={() => setFilterData(initialFilterData)}
+                        />
+                        <ListingList listings={listings} />
+                      </div>
+                    }
+                  />
+                  <Route
+                    path="/listings"
+                    element={
+                      <div className="d-flex">
+                        <ListingFilter
+                          filterListing={setFilterData}
+                          resetFilter={() => setFilterData(initialFilterData)}
+                        />
+                        <ListingList listings={listings} />
+                      </div>
+                    }
+                  />
+                  <Route
+                    path="/my-listings"
+                    element={
+                      <ListingList
+                        listings={listings.filter(
+                          (listing) => listing.seller._id === user._id
+                        )}
                       />
-                      <ListingList listings={listings} />
-                    </div>
-                  }
-                />
-                <Route
-                  path="/my-listings"
-                  element={
-                    <ListingList
-                      listings={listings.filter(
-                        (listing) => listing.seller._id === user._id
-                      )}
-                    />
-                  }
-                />
-                <Route
-                  path="/listings/:id"
-                  element={
-                    <ListingDetails handleDeleteListing={handleDeleteListing} />
-                  }
-                />
-                <Route
-                  path="/listings/new"
-                  element={<ListingForm handleSubmit={handleAddListing} />}
-                />
-                <Route
-                  path="/listings/:id/edit"
-                  element={<ListingForm handleSubmit={handleUpdateListing} />}
-                />
-              </>
-            ) : (
-              <Route path="/" element={<Landing />} />
-            )}
-            <Route path="/signup" element={<SignupForm setUser={setUser} />} />
-            <Route path="/signin" element={<SigninForm setUser={setUser} />} />
-          </Routes>
+                    }
+                  />
+                  <Route
+                    path="/listings/:id"
+                    element={
+                      <ListingDetails
+                        handleDeleteListing={handleDeleteListing}
+                      />
+                    }
+                  />
+                  <Route
+                    path="/listings/new"
+                    element={<ListingForm handleSubmit={handleAddListing} />}
+                  />
+                  <Route
+                    path="/listings/:id/edit"
+                    element={<ListingForm handleSubmit={handleUpdateListing} />}
+                  />
+                </>
+              ) : (
+                <Route path="/" element={<Landing />} />
+              )}
+              <Route
+                path="/signup"
+                element={<SignupForm setUser={setUser} />}
+              />
+              <Route
+                path="/signin"
+                element={<SigninForm setUser={setUser} />}
+              />
+            </Routes>
+          </div>
         </div>
       </AuthedUserContext.Provider>
     </>

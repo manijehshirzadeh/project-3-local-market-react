@@ -2,10 +2,12 @@
   display: flex;
   gap: 1em;
   flex-wrap: wrap;
+  /* background-color: rgb(150, 163, 149); */
 }
 
 .sidebar-filter {
   padding-right: 1rem;
+  min-width: 350px;
 }
 
 /* The Modal (background) */
@@ -45,4 +47,28 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.max-width {
+  max-width: 1320px;
+}
+
+.min-width-400 {
+  min-width: 400px;
+}
+
+.landing-main {
+  background-image: url("market.jpg");
+  background-position: bottom;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+button {
+  background-color: #757575 !important;
+  border-color: #757575 !important;
+}
+
+.height-70vh {
+  height: 70vh;
 }

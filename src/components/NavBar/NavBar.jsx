@@ -12,12 +12,12 @@ const NavBar = ({ handleSignout }) => {
       {user ? (
         <nav
           className="navbar navbar-expand-sm"
-          style={{backgroundColor: "#0866FF"}}
+          style={{ backgroundColor: "#ab826d" }}
           data-bs-theme="dark"
         >
-          <div className="container-fluid">
-            <a className="navbar-brand" href="/">
-              Local Market
+          <div className="container-fluid max-width">
+            <a className="navbar-brand" href="/listings">
+              Home
             </a>
             <button
               className="navbar-toggler"
@@ -35,7 +35,7 @@ const NavBar = ({ handleSignout }) => {
               id="navbarSupportedContent"
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                <li className="nav-item">
+                {/* <li className="nav-item">
                   <a
                     className={
                       "nav-link " +
@@ -46,7 +46,7 @@ const NavBar = ({ handleSignout }) => {
                   >
                     All Listings
                   </a>
-                </li>
+                </li> */}
                 <li className="nav-item">
                   <a
                     className={
@@ -66,9 +66,17 @@ const NavBar = ({ handleSignout }) => {
                     }
                     href="/listings/new"
                   >
-                    New Listing
+                    Create New Listing
                   </a>
                 </li>
+              </ul>
+              <ul className="navbar-nav me-2 mb-2 mb-lg-0">
+                <li className="nav-item">
+                  <a className="nav-link" href="/" onClick={handleSignout}>
+                    Parisa
+                  </a>
+                </li>
+
                 <li className="nav-item">
                   <a className="nav-link" href="/" onClick={handleSignout}>
                     Sign out
@@ -91,10 +99,11 @@ const NavBar = ({ handleSignout }) => {
         </nav>
       ) : (
         <nav
-          className="navbar bg-primary navbar-expand-sm"
+          className="navbar navbar-expand-sm"
+          style={{ backgroundColor: "#ab826d" }}
           data-bs-theme="dark"
         >
-          <div className="container-fluid">
+          <div className="container-fluid max-width">
             <a className="navbar-brand" href="/">
               Local Market
             </a>

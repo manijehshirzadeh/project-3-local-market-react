@@ -66,7 +66,7 @@ const ListingForm = (props) => {
 
   return (
     <main className="h-100 d-flex justify-content-center">
-      <form onSubmit={handleSubmit} style={{ width: "50%" }}>
+      <form onSubmit={handleSubmit} style={{ minWidth: "600px" }}>
         <h1>{id ? "Edit listing" : "New listing"}</h1>
         <div className="mb-3">
           <label htmlFor="title-input" className="form-label">
