@@ -82,7 +82,7 @@ const App = () => {
   const filterListings = (allListings) => {
     if (filterData) {
       return allListings.filter((listing) => {
-        if (filterData.title && !listing.title.includes(filterData.title)) {
+        if (filterData.title && !listing.title.toLowerCase().includes(filterData.title.toLowerCase())) {
           return false;
         }
 
