@@ -22,7 +22,6 @@ const ListingDetails = (props) => {
   }, [id]);
 
   const submitBid = async () => {
-    // todo create a bid for this listing
     const newBid = await listingService.createBid(listing._id, bidFormData);
     setListing({ ...listing, bids: [...listing.bids, newBid] });
     setShowBidForm(false);
@@ -39,7 +38,6 @@ const ListingDetails = (props) => {
     setbidFormData({ ...bidFormData, [event.target.name]: event.target.value });
   };
 
-  // Conditional rendering
   if (listing === null) {
     return <main>Loading...</main>;
   }
