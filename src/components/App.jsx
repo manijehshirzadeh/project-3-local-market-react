@@ -68,23 +68,6 @@ const App = () => {
 
   const handleEditListing = async (listingId) => {
     navigate("/listings/" + listingId + "/edit");
-
-    // to={`/listings/${listing._id}/edit`}
-    // navigate("/listings/" + updatedListing._id);
-
-    // const updatedListing = await listingService.update(
-    //   listingFormData._id,
-    //   listingFormData
-    // );
-    // const updatedListingIndex = listings.findIndex(
-    //   (listing) => listing._id === listingFormData._id
-    // );
-
-    // const updatedListings = [...listings];
-    // updatedListings[updatedListingIndex] = updatedListing;
-    // setListings(updatedListings);
-
-    // navigate("/listings/" + updatedListing._id);
   };
 
   const handleDeleteListing = async (listingId) => {
@@ -124,14 +107,14 @@ const App = () => {
       <AuthedUserContext.Provider value={user}>
         <NavBar user={user} handleSignout={handleSignout} />
         <div className="p-4 d-flex justify-content-center">
-          <div className="max-width">
+          <div className="max-width w-100">
             <Routes>
               {user ? (
                 <>
                   <Route
                     path="/"
                     element={
-                      <div className="d-flex">
+                      <div className="d-flex justify-content-start w-100">
                         <ListingFilter
                           filterListing={setFilterData}
                           resetFilter={() => setFilterData(initialFilterData)}
@@ -143,7 +126,7 @@ const App = () => {
                   <Route
                     path="/listings"
                     element={
-                      <div className="d-flex">
+                      <div className="d-flex justify-content-start w-100">
                         <ListingFilter
                           filterListing={setFilterData}
                           resetFilter={() => setFilterData(initialFilterData)}
@@ -178,6 +161,19 @@ const App = () => {
                   <Route
                     path="/listings/:id/edit"
                     element={<ListingForm handleSubmit={handleUpdateListing} />}
+                  />
+                  <Route
+                    path="*"
+                    exact={true}
+                    element={
+                      <div className="d-flex justify-content-start w-100">
+                        <ListingFilter
+                          filterListing={setFilterData}
+                          resetFilter={() => setFilterData(initialFilterData)}
+                        />
+                        <ListingList listings={listings} />
+                      </div>
+                    }
                   />
                 </>
               ) : (

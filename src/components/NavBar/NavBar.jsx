@@ -33,37 +33,37 @@ const NavBar = ({ handleSignout }) => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a
+                  <Link
                     className={
                       "nav-link " +
                       (location.pathname === "/listings" && "active")
                     }
-                    href="/listings"
+                    to="/listings"
                   >
                     Home
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a
+                  <Link
                     className={
                       "nav-link " +
                       (location.pathname === "/my-listings" && "active")
                     }
-                    href="/my-listings"
+                    to="/my-listings"
                   >
                     My Listings
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a
+                  <Link
                     className={
                       "nav-link " +
                       (location.pathname === "/listings/new" && "active")
                     }
-                    href="/listings/new"
+                    to="/listings/new"
                   >
                     Create New Listing
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <ul className="navbar-nav me-2 mb-2 mb-lg-0">
@@ -72,9 +72,9 @@ const NavBar = ({ handleSignout }) => {
                 </li>
 
                 <li className="nav-item">
-                  <a className="nav-link" href="/" onClick={handleSignout}>
+                  <Link className="nav-link" to="/" onClick={handleSignout}>
                     Sign out
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -87,9 +87,9 @@ const NavBar = ({ handleSignout }) => {
           data-bs-theme="dark"
         >
           <div className="container-fluid max-width">
-            <a className="navbar-brand" href="/">
+            <Link className="navbar-brand" to="/">
               Local Market
-            </a>
+            </Link>
             <button
               className="navbar-toggler"
               type="button"
@@ -107,27 +107,27 @@ const NavBar = ({ handleSignout }) => {
             >
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
-                  <a
+                  <Link
                     className={
                       "nav-link " +
                       (location.pathname === "/signin" && "active")
                     }
                     aria-current="page"
-                    href="/signin"
+                    to="/signin"
                   >
                     Sign In
-                  </a>
+                  </Link>
                 </li>
                 <li className="nav-item">
-                  <a
+                  <Link
                     className={
                       "nav-link " +
                       (location.pathname === "/signup" && "active")
                     }
-                    href="/signup"
+                    to="/signup"
                   >
                     Sign Up
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>

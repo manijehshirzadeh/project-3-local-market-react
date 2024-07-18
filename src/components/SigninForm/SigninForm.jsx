@@ -38,7 +38,7 @@ const SigninForm = (props) => {
       <form
         autoComplete="off"
         onSubmit={handleSubmit}
-        className="d-flex flex-column align-items-center w-100"
+        className="d-flex flex-column align-items-center w-25 min-width-400"
       >
         <div className="mb-3 w-100">
           <label htmlFor="username-input" className="form-label">
