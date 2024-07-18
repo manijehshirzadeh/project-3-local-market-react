@@ -22,8 +22,8 @@ const initialFilterData = {
 };
 
 const App = () => {
-  const [user, setUser] = useState(authService.getUser()); // using the method from authservice
-  const [listings, setListings] = useState([]); // all users' listings
+  const [user, setUser] = useState(authService.getUser()); 
+  const [listings, setListings] = useState([]); 
   const [filterData, setFilterData] = useState(initialFilterData);
 
   const navigate = useNavigate();
