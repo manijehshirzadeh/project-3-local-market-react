@@ -1,9 +1,8 @@
 import "./App.css";
 import { useState, createContext, useEffect } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import NavBar from "./NavBar/NavBar";
 import Landing from "./Landing/Landing";
-import Dashboard from "./Dashboard/Dashboard";
 import SignupForm from "./SignupForm/SignupForm";
 import SigninForm from "./SigninForm/SigninForm";
 
@@ -82,7 +81,10 @@ const App = () => {
   const filterListings = (allListings) => {
     if (filterData) {
       return allListings.filter((listing) => {
-        if (filterData.title && !listing.title.toLowerCase().includes(filterData.title.toLowerCase())) {
+        if (
+          filterData.title &&
+          !listing.title.toLowerCase().includes(filterData.title.toLowerCase())
+        ) {
           return false;
         }
 
@@ -113,15 +115,7 @@ const App = () => {
                 <>
                   <Route
                     path="/"
-                    element={
-                      <div className="d-flex justify-content-start w-100">
-                        <ListingFilter
-                          filterListing={setFilterData}
-                          resetFilter={() => setFilterData(initialFilterData)}
-                        />
-                        <ListingList listings={listings} />
-                      </div>
-                    }
+                    element={<Navigate to="/listings" />}
                   />
                   <Route
                     path="/listings"
@@ -165,15 +159,7 @@ const App = () => {
                   <Route
                     path="*"
                     exact={true}
-                    element={
-                      <div className="d-flex justify-content-start w-100">
-                        <ListingFilter
-                          filterListing={setFilterData}
-                          resetFilter={() => setFilterData(initialFilterData)}
-                        />
-                        <ListingList listings={listings} />
-                      </div>
-                    }
+                    element={<Navigate to="/listings" />}
                   />
                 </>
               ) : (
@@ -187,6 +173,7 @@ const App = () => {
                 path="/signin"
                 element={<SigninForm setUser={setUser} />}
               />
+              <Route path="*" exact={true} element={<Navigate to="/" />} />
             </Routes>
           </div>
         </div>
