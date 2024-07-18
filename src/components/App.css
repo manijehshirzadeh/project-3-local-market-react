@@ -58,7 +58,7 @@
 }
 
 .landing-main {
-  background-image: url("market.jpg");
+  background-image: url("/market.jpg");
   background-position: bottom;
   background-repeat: no-repeat;
   height: 100vh;
