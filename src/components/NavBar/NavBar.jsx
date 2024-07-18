@@ -68,7 +68,7 @@ const NavBar = ({ handleSignout }) => {
               </ul>
               <ul className="navbar-nav me-2 mb-2 mb-lg-0">
                 <li className="nav-item me-3">
-                  <div className="nav-link">Parisa</div>
+                  <div className="nav-link">{user.username}</div>
                 </li>
 
                 <li className="nav-item">
