@@ -80,8 +80,8 @@ https://project-3-local-market-express.onrender.com
 - Manijeh Shirzadeh https://github.com/manijehshirzadeh 
 
 ## Next Steps:
-- Adding Edit and Delete functinality for Bids
-- Adding Like functionality for bid or Listing
+- Adding review functionality for listings
+- Adding Like functionality for bids or listings
 
 
 
