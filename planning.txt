@@ -1,0 +1,101 @@
+
+const bidSchema = new mongoose.Schema(
+    {
+      price: {
+        type: Number,
+        required: true
+      },
+      bidder: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    },
+    { timestamps: true }
+  );
+  
+  
+
+const listingSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+      enum: ["Tools", "Furniture", "Garden", "Cloth", "Books", "Appliances", "Toys", "Electronics"]
+    },
+    seller: {
+         type: mongoose.Schema.Types.ObjectId, 
+        ref: "User" 
+    },
+	price:{
+	    type: Number ,
+		required: true,
+	},
+	postcode:{
+	    type: Number ,
+		required: true,
+	},
+	condition: {
+      type: String,
+      required: true,
+      enum: ["New", "Used - like new", "Used - good", "Used - fair"]
+
+   
+  }, 
+      bids: [bidSchema]}
+
+  , { 
+    timestamps: true }
+);
+
+
+
+
+HTTP Method       	Controller				Response	URI																					Use Case
+GET	                index and search	    200			/listings?seller=userId&category=categoryName&condition=conditionName&title=title	filter listings, return all listings if no query provided
+POST	            create	    			200    		/listings																			Create a listings
+GET	                show	    			200			/listings/:listingId																Get a single listings
+PUT	                update	    			200			/listings/:listingId																Update a listings
+DELETE	            delete					200			/listings/:listingId																Delete a listings
+
+POST 				create bid				200			/listings/:listingId/bids															add a new bid to an existing listing
+
+
+
+
+
+------------------------------------------------
+
+
+																		Frontend-Functionality 		Frontend-Style 		Backend 	   Test Parisa			Test Manijeh
+- user should see all the listings in /listings page					DONE						SEMI-DONE			DOONE			DONE				DONE
+- user can see their own listings in /my-listings page					DONE						SEMI-DONE			Not needed		DONE				Not needed
+- user can add a new listing											DONE						SEMI_DONE			DONE			DONE				DONE
+- user can edit a listing												DONE						SEMI-DONE			DONE			DONE				DONE
+- user can delete a listing												DONE						SEMI-DONE			DONE			DONE				DONE
+- user can search listings by category and condition and title			DONE						SEMI-DONE			DONE			DONE				DONE
+- users can bid on existing listings									DONE						SEMI-DONE			DONE			DONE				DONE
+- users cannot bid on their own listings								DONE						SEMI-DONE			DONE			DONE				DONE
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
